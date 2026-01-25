@@ -1,9 +1,11 @@
 BasicUpstart2(main)
 
-main:
-    jsr SCREEN_CLEAR        // Clear the C64 screen (jsr = jump to subroutine)
-    #import "game.asm"
+#import "memoryMap.asm"
 
-*=$2000
+*=GAME_CODE_ADDRESS "Game Code"
+#import "gameCode.asm"
+
+
+*=SPRITES_ADDRESS "Sprites"
 .import binary "smiley.bin"
 
