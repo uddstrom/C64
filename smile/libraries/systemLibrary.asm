@@ -10,8 +10,23 @@ SYSTEM:
         sta PROCESSOR_PORT
         cli
 
-        lda #%00011110 // Screen RAM: $0400   Charset: $3800
+        // Screen RAM: $0400   Charset: $3800
+        lda #%00011110 
         sta SCREEN_MEMORY_SETUP
+
+        // Enable screen multicolor
+
+        // Set screen border color
+
+        // Set screen background color
+
+        // Set extra color 1
+        // Set extra color 2
+
+        // Clear the screen
+        jsr SCREEN_CLEAR
+
+        // Setup raster inputs.
 
         rts
 
