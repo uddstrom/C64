@@ -1,8 +1,9 @@
-BasicUpstart2(main)
-
+// These imports does not take up any space in memory
 #import "/system/memoryMap.asm"
 #import "/system/config.asm"
 #import "/includes/constants.asm"
+
+BasicUpstart2(main)
 
 *=GAME_CODE_ADDRESS "Game Code"
 #import "/includes/gameCode.asm"
@@ -24,4 +25,7 @@ BasicUpstart2(main)
 
 *=CHARSET_ADDRESS "Charset"
 .import binary "/charset/charset.bin"
+
+*=TABLES_ADDRESS "Tables"
+#import "/includes/tables.asm"
 

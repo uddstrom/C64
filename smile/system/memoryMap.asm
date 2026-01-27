@@ -8,4 +8,5 @@
 
 .label SPRITES_ADDRESS              = $2000 // 96 sprites * 64 byte/sprite = 6144 bytes = $1800 bytes
 .label CHARSET_ADDRESS              = $3800
+.label TABLES_ADDRESS               = $4000
 .label LIBRARIES_ADDRESS            = $5000
