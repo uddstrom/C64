@@ -1,6 +1,7 @@
 BasicUpstart2(main)
 
 #import "/system/memoryMap.asm"
+#import "/system/config.asm"
 #import "/includes/constants.asm"
 
 *=GAME_CODE_ADDRESS "Game Code"
