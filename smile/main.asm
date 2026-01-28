@@ -1,7 +1,11 @@
+
+// -------------- MAIN --------------
+
 // These imports does not take up any space in memory
 #import "/system/memoryMap.asm"
 #import "/system/config.asm"
 #import "/includes/constants.asm"
+#import "/includes/macros.asm"
 
 BasicUpstart2(main)
 
