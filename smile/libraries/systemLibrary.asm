@@ -15,13 +15,25 @@ SYSTEM:
         sta SCREEN_MEMORY_SETUP
 
         // Enable screen multicolor
+		lda #%11011000
+		sta SCREEN_CONTROL_2
 
         // Set screen border color
+		lda #DEFAULT_SCREEN_BORDER_COLOR
+		sta SCREEN_BORDER_COLOR
 
         // Set screen background color
+		lda #DEFAULT_SCREEN_BACKGROUND_COLOR
+		sta SCREEN_BACKGROUND_COLOR
 
         // Set extra color 1
+		lda #DEFAULT_SCREEN_EXTRA_COLOR_1
+		sta SCREEN_EXTRA_COLOR_1
+
         // Set extra color 2
+		lda #DEFAULT_SCREEN_EXTRA_COLOR_2
+		sta SCREEN_EXTRA_COLOR_2
+
 
         // Clear the screen
         jsr SCREEN_CLEAR
