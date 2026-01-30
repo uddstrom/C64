@@ -18,3 +18,17 @@
     jsr TILE.drawChar
 }
 
+.macro DrawTile(tile, row, col)
+{
+    lda #tile
+    sta tileNr
+
+    lda #row
+    sta tileRow
+
+    lda #col
+    sta tileCol
+
+    jsr TILE.drawTile
+}
+

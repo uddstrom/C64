@@ -21,8 +21,8 @@ BasicUpstart2(main)
 *=CHARSET_ATTRIB_ADDRESS "Charset Attributes"
 .import binary "/charset/charsetAttrib.bin"
 
-// *=TILESET_ADDRESS "Tileset"
-// .import binary "tileset.bin"
+*=TILESET_ADDRESS "Tileset"
+.import binary "/tileset/tileset.bin"
 
 *=SPRITES_ADDRESS "Sprites"
 .import binary "/sprites/smiley.bin"
