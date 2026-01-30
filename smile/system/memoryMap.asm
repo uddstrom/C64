@@ -11,3 +11,5 @@
 .label CHARSET_ADDRESS              = $3800
 .label TABLES_ADDRESS               = $4000
 .label LIBRARIES_ADDRESS            = $5000
+.label MAPS_ADDRESS                 = $7000
+

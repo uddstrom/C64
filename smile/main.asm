@@ -33,3 +33,5 @@ BasicUpstart2(main)
 *=TABLES_ADDRESS "Tables"
 #import "/includes/tables.asm"
 
+*=MAPS_ADDRESS "Map"
+.import binary "/tileset/tilemap.bin"
