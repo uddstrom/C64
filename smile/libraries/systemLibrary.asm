@@ -39,6 +39,7 @@ SYSTEM:
         jsr SCREEN_CLEAR
 
         // Setup raster inputs.
+        jsr INTERRUPT.setupRasterInterrupt
 
         rts
 

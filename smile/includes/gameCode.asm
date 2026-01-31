@@ -19,10 +19,6 @@ gameSetup:
     sta Sprite_X_Pos,x
     sta Sprite_Y_Pos,x
 
-    // Should be done in raster interupt routine
-    sta $d000           // sprite 0 x coord
-    sta $d001           // sprite 0 y coord
-
     // For later
     // lda #10
     // sta Sprite_V_Speed,x
@@ -46,7 +42,7 @@ gameSetup:
 gameLoop:
     jsr delay
     jsr INPUT.readJoystick_2
-    // jsr SPRITE.update
+    jsr SPRITE.update
     jmp gameLoop
 
 delay:
