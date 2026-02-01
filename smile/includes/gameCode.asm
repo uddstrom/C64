@@ -10,7 +10,6 @@ main:
 
 gameSetup:
     LoadMap(0)
-    // #import "/includes/sprite.asm"
 
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0
@@ -51,7 +50,6 @@ gameSetup:
     lda SPRITE_ENABLE
     ora #%00000010
     sta SPRITE_ENABLE
-
 
 
 gameLoop:
