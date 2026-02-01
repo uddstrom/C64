@@ -4,7 +4,7 @@
 INPUT:
 {
     readJoystick_2:
-        ldx #0
+        ldx #0                  // Sprite 0
         lda JOYSTICK_2          // Read joystick port 2, memaddr $dc00
         cmp #JOYSTICK_2_IDLE    // cmp = compare, is the joystick idle 
         beq joy2_IDLE           // beq = branch if equal, if equal goto label joy2_IDLE, otherwise proceed
@@ -49,14 +49,13 @@ INPUT:
                 lda JOYSTICK_2
                 and #FIRE
                 beq joy2_FIRE
-                    lda #$80            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
-                    sta $07f8           // Sprite 0 sprite pointer index
+                    lda #(SPRITE_POINTER_INDEX + 0)            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
+                    sta SPRITE_POINTER,x           // Sprite 0 sprite pointer index
                     jmp doneReadJoystick_2
                 joy2_FIRE:
-                    // later: smile (toggle smily sprite)
                     inc SCREEN_BORDER_COLOR
-                    lda #$81            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
-                    sta $07f8           // Sprite 0 sprite pointer index
+                    lda #(SPRITE_POINTER_INDEX + 1)            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
+                    sta SPRITE_POINTER,x           // Sprite 0 sprite pointer index
 
         doneReadJoystick_2:
             rts
