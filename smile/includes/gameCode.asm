@@ -10,7 +10,6 @@ main:
 
 gameSetup:
     LoadMap(0)
-    // #import "/includes/sprite.asm"
 
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0
@@ -37,6 +36,20 @@ gameSetup:
 
     lda #WHITE
     sta SPRITE_EXTRA_COLOR_2
+
+    // --- init Sprite 1 ---
+    ldx #1
+
+    lda #150
+    sta Sprite_X_Pos,x
+    sta Sprite_Y_Pos,x
+
+    lda #(SPRITE_POINTER_INDEX + 8)
+    sta SPRITE_POINTER,x
+
+    lda SPRITE_ENABLE
+    ora #%00000010
+    sta SPRITE_ENABLE
 
 
 gameLoop:

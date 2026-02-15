@@ -34,7 +34,6 @@ SYSTEM:
 		lda #DEFAULT_SCREEN_EXTRA_COLOR_2
 		sta SCREEN_EXTRA_COLOR_2
 
-
         // Clear the screen
         jsr SCREEN_CLEAR
 
