@@ -24,6 +24,9 @@ BasicUpstart2(main)
 *=TILESET_ADDRESS "Tileset"
 .import binary "/tileset/tileset.bin"
 
+*=MUSIC_ADDRESS "Music"
+.import binary "/music/T2.sid"
+
 *=SPRITES_ADDRESS "Sprites"
 .import binary "/sprites/smiley.bin"
 

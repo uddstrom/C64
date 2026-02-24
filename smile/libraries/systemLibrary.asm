@@ -37,6 +37,12 @@ SYSTEM:
         // Clear the screen
         jsr SCREEN_CLEAR
 
+        // Play music
+        lda #0
+        tax
+        tay
+        jsr MUSIC_INIT
+
         // Setup raster inputs.
         jsr INTERRUPT.setupRasterInterrupt
 

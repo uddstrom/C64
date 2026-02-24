@@ -3,6 +3,7 @@
 
 #import "/constants/inputConstants.asm"
 #import "/constants/interruptConstants.asm"
+#import "/constants/musicConstants.asm"
 #import "/constants/screenConstants.asm"
 #import "/constants/spriteConstants.asm"
 #import "/constants/systemConstants.asm"
