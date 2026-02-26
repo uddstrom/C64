@@ -2,6 +2,7 @@
 // -------------- GAME CODE --------------
 
 scrollX: .byte 0
+animate: .byte 0
 
 
 main:
@@ -43,12 +44,15 @@ gameSetup:
 
 gameLoop:
     jsr delay
+    jsr INPUT.readJoystick_2
     jsr SPRITE.update
     jmp gameLoop
 
 delay:
     ldx #0
     slowDownLoop:
+    nop
+    nop
     nop
     nop
     nop
