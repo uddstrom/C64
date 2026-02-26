@@ -7,6 +7,9 @@
 .label SPRITE_EXTRA_COLOR_1 = $d025
 .label SPRITE_EXTRA_COLOR_2 = $d026
 
+scrollX: .byte 0
+
+
 main:
     // init stack pointer
     ldx #$ff
@@ -16,11 +19,18 @@ main:
 
 gameSetup:
 
+    lda #0
+    sta scrollX
+
+    jsr MAP.loadMap_screen_1
+    jsr MAP.colorMap
+
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0
 
-    lda #100
+    lda #50
     sta $d000 // SPRITE_0_X
+    lda #150
     sta $d001 // SPRITE_0_Y
 
     lda #$80            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
@@ -34,10 +44,10 @@ gameSetup:
     lda #YELLOW
     sta SPRITE_COLOR,x //$d027,0
 
-    lda #BLACK
+    lda #ORANGE
     sta SPRITE_EXTRA_COLOR_1
 
-    lda #RED
+    lda #WHITE
     sta SPRITE_EXTRA_COLOR_2
 
 gameLoop:
