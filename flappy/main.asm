@@ -19,6 +19,9 @@ BasicUpstart2(main)
 *=LIBRARIES_ADDRESS "Libraries"
 #import "/includes/libraries.asm"
 
+*=VARIABLES_ADDRESS "Variables"
+#import "/includes/variables.asm"
+
 *=CHARSET_ADDRESS "Charset"
 .import binary "/charset/charset.bin"
 

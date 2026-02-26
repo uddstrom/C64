@@ -1,12 +1,6 @@
 
 // -------------- GAME CODE --------------
 
-.label SPRITE_ENABLE = $d015
-.label SPRITE_COLOR = $d027
-.label SPRITE_MULTICOLOR = $d01c
-.label SPRITE_EXTRA_COLOR_1 = $d025
-.label SPRITE_EXTRA_COLOR_2 = $d026
-
 scrollX: .byte 0
 
 
@@ -29,12 +23,9 @@ gameSetup:
     ldx #0 // sprite 0
 
     lda #50
-    sta $d000 // SPRITE_0_X
+    sta Sprite_X_Pos,x
     lda #150
-    sta $d001 // SPRITE_0_Y
-
-    lda #$80            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
-    sta $07f8           // Sprite 0 sprite pointer index
+    sta Sprite_Y_Pos,x
 
     lda #%00000001          // Enable bit for sprite 0
     sta SPRITE_MULTICOLOR   // Enable multicolor for sprite 0
@@ -52,6 +43,7 @@ gameSetup:
 
 gameLoop:
     jsr delay
+    jsr SPRITE.update
     jmp gameLoop
 
 delay:

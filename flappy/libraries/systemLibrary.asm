@@ -14,8 +14,8 @@ SYSTEM:
         lda #%00011110 
         sta $d018 // SCREEN_MEMORY_SETUP
 
-        // Enable screen multicolor
-		lda #%11011000
+        // Enable screen multicolor and set screen width to 38 cols
+		lda #%11010111
 		sta $d016 // SCREEN_CONTROL_2
 
         // Set screen border color
@@ -38,7 +38,7 @@ SYSTEM:
         jsr $e544 // SCREEN_CLEAR
 
         // Setup raster inputs.
-        // jsr INTERRUPT.setupRasterInterrupt
+        jsr INTERRUPT.setupRasterInterrupt
 
         rts
 
