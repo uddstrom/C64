@@ -17,8 +17,8 @@ gameSetup:
     lda #0
     sta scrollX
 
-    jsr MAP.loadMap_screen_1
-    jsr MAP.colorMap
+    // jsr MAP.loadMap_screen_1
+    // jsr MAP.colorMap
 
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0

@@ -21,7 +21,8 @@ SPRITE:
     drawSprites:
         ldx #0
         lda #SPRITE_POINTER_INDEX
-        sta SPRITE_POINTER,x
+        sta SPRITE_POINTER_1,x
+        sta SPRITE_POINTER_2,x
 
         updateSpritesPos:
             lda Sprite_X_Pos,x
@@ -65,7 +66,8 @@ SPRITE:
             clc
             adc #SPRITE_POINTER_INDEX
             // adc #0
-            sta SPRITE_POINTER,x
+            sta SPRITE_POINTER_1,x
+            sta SPRITE_POINTER_2,x
 
         done:
             rts

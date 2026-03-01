@@ -6,9 +6,9 @@
 // .byte $04
 // .byte $0c
 //
-// Screen_Memory_Setup_Table:
-// .byte %00010000
-// .byte %00110000
+Screen_Memory_Setup_Table:
+.byte %00010000
+.byte %00110000
 
 .label SCREEN_RAM_1_ROW_0 = $0400 + (0 * 40)
 .label SCREEN_RAM_1_ROW_1 = $0400 + (1 * 40)
@@ -36,31 +36,31 @@
 .label SCREEN_RAM_1_ROW_23 = $0400 + (23 * 40)
 .label SCREEN_RAM_1_ROW_24 = $0400 + (24 * 40)
 
-// .label SCREEN_RAM_2_ROW_0 = $0c00 + (0 * 40)
-// .label SCREEN_RAM_2_ROW_1 = $0c00 + (1 * 40)
-// .label SCREEN_RAM_2_ROW_2 = $0c00 + (2 * 40)
-// .label SCREEN_RAM_2_ROW_3 = $0c00 + (3 * 40)
-// .label SCREEN_RAM_2_ROW_4 = $0c00 + (4 * 40)
-// .label SCREEN_RAM_2_ROW_5 = $0c00 + (5 * 40)
-// .label SCREEN_RAM_2_ROW_6 = $0c00 + (6 * 40)
-// .label SCREEN_RAM_2_ROW_7 = $0c00 + (7 * 40)
-// .label SCREEN_RAM_2_ROW_8 = $0c00 + (8 * 40)
-// .label SCREEN_RAM_2_ROW_9 = $0c00 + (9 * 40)
-// .label SCREEN_RAM_2_ROW_10 = $0c00 + (10 * 40)
-// .label SCREEN_RAM_2_ROW_11 = $0c00 + (11 * 40)
-// .label SCREEN_RAM_2_ROW_12 = $0c00 + (12 * 40)
-// .label SCREEN_RAM_2_ROW_13 = $0c00 + (13 * 40)
-// .label SCREEN_RAM_2_ROW_14 = $0c00 + (14 * 40)
-// .label SCREEN_RAM_2_ROW_15 = $0c00 + (15 * 40)
-// .label SCREEN_RAM_2_ROW_16 = $0c00 + (16 * 40)
-// .label SCREEN_RAM_2_ROW_17 = $0c00 + (17 * 40)
-// .label SCREEN_RAM_2_ROW_18 = $0c00 + (18 * 40)
-// .label SCREEN_RAM_2_ROW_19 = $0c00 + (19 * 40)
-// .label SCREEN_RAM_2_ROW_20 = $0c00 + (20 * 40)
-// .label SCREEN_RAM_2_ROW_21 = $0c00 + (21 * 40)
-// .label SCREEN_RAM_2_ROW_22 = $0c00 + (22 * 40)
-// .label SCREEN_RAM_2_ROW_23 = $0c00 + (23 * 40)
-// .label SCREEN_RAM_2_ROW_24 = $0c00 + (24 * 40)
+.label SCREEN_RAM_2_ROW_0 = $0c00 + (0 * 40)
+.label SCREEN_RAM_2_ROW_1 = $0c00 + (1 * 40)
+.label SCREEN_RAM_2_ROW_2 = $0c00 + (2 * 40)
+.label SCREEN_RAM_2_ROW_3 = $0c00 + (3 * 40)
+.label SCREEN_RAM_2_ROW_4 = $0c00 + (4 * 40)
+.label SCREEN_RAM_2_ROW_5 = $0c00 + (5 * 40)
+.label SCREEN_RAM_2_ROW_6 = $0c00 + (6 * 40)
+.label SCREEN_RAM_2_ROW_7 = $0c00 + (7 * 40)
+.label SCREEN_RAM_2_ROW_8 = $0c00 + (8 * 40)
+.label SCREEN_RAM_2_ROW_9 = $0c00 + (9 * 40)
+.label SCREEN_RAM_2_ROW_10 = $0c00 + (10 * 40)
+.label SCREEN_RAM_2_ROW_11 = $0c00 + (11 * 40)
+.label SCREEN_RAM_2_ROW_12 = $0c00 + (12 * 40)
+.label SCREEN_RAM_2_ROW_13 = $0c00 + (13 * 40)
+.label SCREEN_RAM_2_ROW_14 = $0c00 + (14 * 40)
+.label SCREEN_RAM_2_ROW_15 = $0c00 + (15 * 40)
+.label SCREEN_RAM_2_ROW_16 = $0c00 + (16 * 40)
+.label SCREEN_RAM_2_ROW_17 = $0c00 + (17 * 40)
+.label SCREEN_RAM_2_ROW_18 = $0c00 + (18 * 40)
+.label SCREEN_RAM_2_ROW_19 = $0c00 + (19 * 40)
+.label SCREEN_RAM_2_ROW_20 = $0c00 + (20 * 40)
+.label SCREEN_RAM_2_ROW_21 = $0c00 + (21 * 40)
+.label SCREEN_RAM_2_ROW_22 = $0c00 + (22 * 40)
+.label SCREEN_RAM_2_ROW_23 = $0c00 + (23 * 40)
+.label SCREEN_RAM_2_ROW_24 = $0c00 + (24 * 40)
 
 .label SCREEN_COLOR_ROW_0 = SCREEN_COLOR_RAM + (SCREEN_WIDTH * 0)
 .label SCREEN_COLOR_ROW_1 = SCREEN_COLOR_RAM + (SCREEN_WIDTH * 1)

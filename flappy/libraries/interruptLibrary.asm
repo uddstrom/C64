@@ -55,6 +55,7 @@ INTERRUPT:
         ora #%00000001          // Acknowledge raster interrupt
         sta INTERRUPT_STATUS    // $d019
 
+        jsr MAP.scrollRight
         jsr SPRITE.drawSprites
 
         jmp INTERRUPT_RETURN    // $ea81, KERNAL interrupt return routine

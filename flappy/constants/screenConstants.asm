@@ -1,7 +1,8 @@
 
 // -------------- SCREEN CONSTANTS --------------
 
-.label SCREEN_RAM               = $0400
+.label SCREEN_RAM_1             = $0400
+.label SCREEN_RAM_2             = $0c00
 .label SCREEN_COLOR_RAM         = $d800
 
 .label SCREEN_CONTROL_1         = $d011

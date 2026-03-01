@@ -11,7 +11,6 @@
 .label SPRITE_EXTRA_COLOR_1     = $d025           // sprite extra color 1
 .label SPRITE_EXTRA_COLOR_2     = $d026           // sprite extra color 2
 
-// lda #$80            // Why $80? $2000 / $40 (64=$40 bytes of sprite graphics)
-// sta $07f8           // Sprite 0 sprite pointer index
-.label SPRITE_POINTER = SCREEN_RAM + $03f8
+.label SPRITE_POINTER_1 = SCREEN_RAM_1 + $03f8
+.label SPRITE_POINTER_2 = SCREEN_RAM_2 + $03f8
 .label SPRITE_POINTER_INDEX = SPRITES_ADDRESS / 64

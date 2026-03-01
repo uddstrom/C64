@@ -3,6 +3,138 @@
 
 MAP:
 {
+    scrollRight:
+
+		lda SCREEN_CONTROL_2  // $d016
+		and #%00000111
+		cmp #%00000011 // Scroll at 3
+		bne skipLoadingSecondScreen
+			// When the map has scrollen half way across the screen (4 pixels),
+			// we load the next part of the map
+			inc scrollX
+			lda scrollX
+			and #%00000001 // Bit 0 will always be either 0 or 1
+			bne loadMapToScreen2
+			loadMapToScreen1:
+				jsr loadMap_screen_1
+				jmp doneLoadingSecondScreen
+			loadMapToScreen2:
+				jsr loadMap_screen_2
+			doneLoadingSecondScreen:
+
+		skipLoadingSecondScreen:
+            lda SCREEN_CONTROL_2  // $d016
+            and #%00000111
+            cmp #%00000000 // Scroll bits at 0 (scrolling at the full position)
+            beq switchActiveScreen
+                dec SCREEN_CONTROL_2 //$d016 Scroll screen 1 pixel left
+                rts
+
+		switchActiveScreen:
+			// Reset scroll bits in $d016 to %00000111 (7)
+			// That means adjusting the screen to the right
+            lda SCREEN_CONTROL_2  // $d016
+			ora #%00000111
+			sta SCREEN_CONTROL_2 // $d016
+
+			// Switch where screen RAM is ($0400 or $0c00)
+			lda scrollX
+			and #%00000001 // Bit 0 will always be either 0 or 1
+			tax
+			lda SCREEN_MEMORY_SETUP // $d018
+			and #%00001111
+			ora Screen_Memory_Setup_Table,x
+			sta SCREEN_MEMORY_SETUP // $d018
+
+        colorMap:
+            ldy scrollX
+            ldx #0
+            colorMapCols:
+                lda MAP_ROW_COLOR_0,y
+                sta SCREEN_COLOR_ROW_0,x
+
+                lda MAP_ROW_COLOR_1,y
+                sta SCREEN_COLOR_ROW_1,x
+
+                lda MAP_ROW_COLOR_2,y
+                sta SCREEN_COLOR_ROW_2,x
+
+                lda MAP_ROW_COLOR_3,y
+                sta SCREEN_COLOR_ROW_3,x
+
+                lda MAP_ROW_COLOR_4,y
+                sta SCREEN_COLOR_ROW_4,x
+
+                lda MAP_ROW_COLOR_5,y
+                sta SCREEN_COLOR_ROW_5,x
+
+                lda MAP_ROW_COLOR_6,y
+                sta SCREEN_COLOR_ROW_6,x
+
+                lda MAP_ROW_COLOR_7,y
+                sta SCREEN_COLOR_ROW_7,x
+
+                lda MAP_ROW_COLOR_8,y
+                sta SCREEN_COLOR_ROW_8,x
+
+                lda MAP_ROW_COLOR_9,y
+                sta SCREEN_COLOR_ROW_9,x
+
+                lda MAP_ROW_COLOR_10,y
+                sta SCREEN_COLOR_ROW_10,x
+
+                lda MAP_ROW_COLOR_11,y
+                sta SCREEN_COLOR_ROW_11,x
+
+                lda MAP_ROW_COLOR_12,y
+                sta SCREEN_COLOR_ROW_12,x
+
+                lda MAP_ROW_COLOR_13,y
+                sta SCREEN_COLOR_ROW_13,x
+
+                lda MAP_ROW_COLOR_14,y
+                sta SCREEN_COLOR_ROW_14,x
+
+                lda MAP_ROW_COLOR_15,y
+                sta SCREEN_COLOR_ROW_15,x
+
+                lda MAP_ROW_COLOR_16,y
+                sta SCREEN_COLOR_ROW_16,x
+
+                lda MAP_ROW_COLOR_17,y
+                sta SCREEN_COLOR_ROW_17,x
+
+                lda MAP_ROW_COLOR_18,y
+                sta SCREEN_COLOR_ROW_18,x
+
+                lda MAP_ROW_COLOR_19,y
+                sta SCREEN_COLOR_ROW_19,x
+
+                lda MAP_ROW_COLOR_20,y
+                sta SCREEN_COLOR_ROW_20,x
+
+                lda MAP_ROW_COLOR_21,y
+                sta SCREEN_COLOR_ROW_21,x
+
+                lda MAP_ROW_COLOR_22,y
+                sta SCREEN_COLOR_ROW_22,x
+
+                lda MAP_ROW_COLOR_23,y
+                sta SCREEN_COLOR_ROW_23,x
+
+                lda MAP_ROW_COLOR_24,y
+                sta SCREEN_COLOR_ROW_24,x
+
+                inx
+                iny
+
+                cpx #39 // draw 39 cols
+                beq doneLoadingColors
+                    jmp colorMapCols
+
+                doneLoadingColors:
+                    rts
+
     loadMap_screen_1:
         ldy scrollX
         ldx #0
@@ -93,95 +225,95 @@ MAP:
             doneLoadingMap_screen_1:
                 rts
 
-    colorMap:
+    loadMap_screen_2:
         ldy scrollX
         ldx #0
-        colorMapCols:
-            lda MAP_ROW_COLOR_0,y
-            sta SCREEN_COLOR_ROW_0,x
 
-            lda MAP_ROW_COLOR_1,y
-            sta SCREEN_COLOR_ROW_1,x
+        loadMap_cols_screen_2:
+            lda MAP_ROW_0,y
+            sta SCREEN_RAM_2_ROW_0,x
 
-            lda MAP_ROW_COLOR_2,y
-            sta SCREEN_COLOR_ROW_2,x
+            lda MAP_ROW_1,y
+            sta SCREEN_RAM_2_ROW_1,x
+            lda MAP_ROW_2,y
 
-            lda MAP_ROW_COLOR_3,y
-            sta SCREEN_COLOR_ROW_3,x
+            sta SCREEN_RAM_2_ROW_2,x
 
-            lda MAP_ROW_COLOR_4,y
-            sta SCREEN_COLOR_ROW_4,x
+            lda MAP_ROW_3,y
+            sta SCREEN_RAM_2_ROW_3,x
 
-            lda MAP_ROW_COLOR_5,y
-            sta SCREEN_COLOR_ROW_5,x
+            lda MAP_ROW_4,y
+            sta SCREEN_RAM_2_ROW_4,x
 
-            lda MAP_ROW_COLOR_6,y
-            sta SCREEN_COLOR_ROW_6,x
+            lda MAP_ROW_5,y
+            sta SCREEN_RAM_2_ROW_5,x
 
-            lda MAP_ROW_COLOR_7,y
-            sta SCREEN_COLOR_ROW_7,x
+            lda MAP_ROW_6,y
+            sta SCREEN_RAM_2_ROW_6,x
 
-            lda MAP_ROW_COLOR_8,y
-            sta SCREEN_COLOR_ROW_8,x
+            lda MAP_ROW_7,y
+            sta SCREEN_RAM_2_ROW_7,x
 
-            lda MAP_ROW_COLOR_9,y
-            sta SCREEN_COLOR_ROW_9,x
+            lda MAP_ROW_8,y
+            sta SCREEN_RAM_2_ROW_8,x
 
-            lda MAP_ROW_COLOR_10,y
-            sta SCREEN_COLOR_ROW_10,x
+            lda MAP_ROW_9,y
+            sta SCREEN_RAM_2_ROW_9,x
 
-            lda MAP_ROW_COLOR_11,y
-            sta SCREEN_COLOR_ROW_11,x
+            lda MAP_ROW_10,y
+            sta SCREEN_RAM_2_ROW_10,x
 
-            lda MAP_ROW_COLOR_12,y
-            sta SCREEN_COLOR_ROW_12,x
+            lda MAP_ROW_11,y
+            sta SCREEN_RAM_2_ROW_11,x
 
-            lda MAP_ROW_COLOR_13,y
-            sta SCREEN_COLOR_ROW_13,x
+            lda MAP_ROW_12,y
+            sta SCREEN_RAM_2_ROW_12,x
 
-            lda MAP_ROW_COLOR_14,y
-            sta SCREEN_COLOR_ROW_14,x
+            lda MAP_ROW_13,y
+            sta SCREEN_RAM_2_ROW_13,x
 
-            lda MAP_ROW_COLOR_15,y
-            sta SCREEN_COLOR_ROW_15,x
+            lda MAP_ROW_14,y
+            sta SCREEN_RAM_2_ROW_14,x
 
-            lda MAP_ROW_COLOR_16,y
-            sta SCREEN_COLOR_ROW_16,x
+            lda MAP_ROW_15,y
+            sta SCREEN_RAM_2_ROW_15,x
 
-            lda MAP_ROW_COLOR_17,y
-            sta SCREEN_COLOR_ROW_17,x
+            lda MAP_ROW_16,y
+            sta SCREEN_RAM_2_ROW_16,x
 
-            lda MAP_ROW_COLOR_18,y
-            sta SCREEN_COLOR_ROW_18,x
+            lda MAP_ROW_17,y
+            sta SCREEN_RAM_2_ROW_17,x
 
-            lda MAP_ROW_COLOR_19,y
-            sta SCREEN_COLOR_ROW_19,x
+            lda MAP_ROW_18,y
+            sta SCREEN_RAM_2_ROW_18,x
 
-            lda MAP_ROW_COLOR_20,y
-            sta SCREEN_COLOR_ROW_20,x
+            lda MAP_ROW_19,y
+            sta SCREEN_RAM_2_ROW_19,x
 
-            lda MAP_ROW_COLOR_21,y
-            sta SCREEN_COLOR_ROW_21,x
+            lda MAP_ROW_20,y
+            sta SCREEN_RAM_2_ROW_20,x
 
-            lda MAP_ROW_COLOR_22,y
-            sta SCREEN_COLOR_ROW_22,x
+            lda MAP_ROW_21,y
+            sta SCREEN_RAM_2_ROW_21,x
 
-            lda MAP_ROW_COLOR_23,y
-            sta SCREEN_COLOR_ROW_23,x
+            lda MAP_ROW_22,y
+            sta SCREEN_RAM_2_ROW_22,x
 
-            lda MAP_ROW_COLOR_24,y
-            sta SCREEN_COLOR_ROW_24,x
+            lda MAP_ROW_23,y
+            sta SCREEN_RAM_2_ROW_23,x
+
+            lda MAP_ROW_24,y
+            sta SCREEN_RAM_2_ROW_24,x
 
             inx
             iny
 
             cpx #39 // draw 39 cols
-            beq doneLoadingColors
-                jmp colorMapCols
+            beq doneLoadingMap_screen_2
+                jmp loadMap_cols_screen_2
 
-            doneLoadingColors:
+            doneLoadingMap_screen_2:
                 rts
+
 }
-
-
 
