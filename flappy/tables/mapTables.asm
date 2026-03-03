@@ -1,6 +1,8 @@
 
 // ---------------------- MAP TABLES ----------------------
 
+// Not really tables, but kind of.
+// Implemented like this to optimize scrolling performance.
 .label MAP_ROW_0 = MAPS_ADDRESS + (MAP_WIDTH * 0)
 .label MAP_ROW_1 = MAPS_ADDRESS + (MAP_WIDTH * 1)
 .label MAP_ROW_2 = MAPS_ADDRESS + (MAP_WIDTH * 2)

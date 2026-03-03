@@ -46,6 +46,22 @@ gameLoop:
     jsr delay
     jsr INPUT.readJoystick_2
     jsr SPRITE.update
+ 
+    // check collision upwards
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_LEFT, SPRITE_TOP)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_MIDDLE, SPRITE_TOP)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_TOP)
+
+    // check collision to the right
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_TOP)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_CENTER)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_BOTTOM)
+
+    // check collision downwards
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_LEFT, SPRITE_BOTTOM)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_MIDDLE, SPRITE_BOTTOM)
+    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_BOTTOM)
+ 
     jmp gameLoop
 
 delay:
