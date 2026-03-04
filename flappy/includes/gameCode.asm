@@ -19,6 +19,7 @@ gameSetup:
 
     // jsr MAP.loadMap_screen_1
     // jsr MAP.colorMap
+    PlaySong(0)
 
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0

@@ -10,8 +10,8 @@ SYSTEM:
         sta $0001 // PROCESSOR_PORT
         cli
 
-        // Screen RAM: $0400   Charset: $3800
-        lda #%00011110 
+        // Screen RAM: $0400   Charset: $3000
+        lda #%00011100
         sta $d018 // SCREEN_MEMORY_SETUP
 
         // Enable screen multicolor and set screen width to 38 cols
@@ -36,6 +36,12 @@ SYSTEM:
 
         // Clear the screen
         jsr $e544 // SCREEN_CLEAR
+
+        // Init music
+        lda #0
+        tax
+        tay
+        jsr MUSIC_INIT
 
         // Setup raster inputs.
         jsr INTERRUPT.setupRasterInterrupt
