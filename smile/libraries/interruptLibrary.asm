@@ -56,6 +56,7 @@ INTERRUPT:
         sta INTERRUPT_STATUS    // $d019
 
         jsr SPRITE.drawSprites
+        jsr PLAY_MUSIC
 
         jmp INTERRUPT_RETURN    // $ea81, KERNAL interrupt return routine
 

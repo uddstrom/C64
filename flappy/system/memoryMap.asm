@@ -5,8 +5,8 @@
 .label GAME_CODE_ADDRESS            = $0810
 .label CHARSET_ATTRIB_ADDRESS       = $0f00
 .label VARIABLES_ADDRESS            = $1000
-
-.label SPRITES_ADDRESS              = $2000 // 96 sprites * 64 byte/sprite = 6144 bytes = $1800 bytes
+.label MUSIC_ADDRESS                = $2000
+.label SPRITES_ADDRESS              = $3000
 .label CHARSET_ADDRESS              = $3800
 .label TABLES_ADDRESS               = $4000
 .label LIBRARIES_ADDRESS            = $5000

@@ -23,6 +23,9 @@ BasicUpstart2(main)
 *=VARIABLES_ADDRESS "Variables"
 #import "/includes/variables.asm"
 
+*=MUSIC_ADDRESS "Music"
+#import "/music/angry_birds.sid"
+
 *=CHARSET_ADDRESS "Charset"
 .import binary "/charset/charset.bin"
 

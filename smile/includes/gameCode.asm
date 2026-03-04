@@ -10,6 +10,7 @@ main:
 
 gameSetup:
     LoadMap(0)
+    PlayMusic(0)
 
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0

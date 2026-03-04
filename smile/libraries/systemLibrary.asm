@@ -34,6 +34,12 @@ SYSTEM:
 		lda #DEFAULT_SCREEN_EXTRA_COLOR_2
 		sta SCREEN_EXTRA_COLOR_2
 
+        // Init music
+        lda #0
+        tax
+        tay
+        jsr MUSIC_INIT
+
         // Clear the screen
         jsr SCREEN_CLEAR
 
