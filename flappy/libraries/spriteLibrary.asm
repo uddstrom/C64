@@ -1,5 +1,6 @@
 
 // -------------- SPRITE LIBRARY --------------
+
 sprite_anim_timer: .byte 0 
 ground_level: .byte 198
 
@@ -70,5 +71,69 @@ SPRITE:
             sta SPRITE_POINTER_2,x
 
         done:
+            rts
+
+    checkCharCollision:
+        txa
+        pha
+        tya
+        pha
+
+        stx tempX // Save X register in tempX
+
+        // Calculate the sprites row position.
+        // Done by dividing the sprites y pixel position by 8,
+        // after removing the 50 pixel top offset.
+        lda spriteYpos
+        sec
+        sbc #50 // Default Y offset
+        clc
+        adc spriteYoffset
+        lsr
+        lsr // LSR * 3: Divide by 8
+        lsr
+        tax // x now contains the current sprite row.
+
+        // TODO: Figure out if we should read from screen 1 or 2.
+        // Or does it matter?
+        lda Row_LO,x
+        sta ZP_ROW_LO
+        lda Row_HI,x
+        sta ZP_ROW_HI
+
+        ldx tempX // Restore X register from tempX
+
+        // Calculate the sprites col position.
+        // Done by dividing the sprites x pixel position by 8,
+        // after removing the 24 pixel left offset.
+        lda spriteXpos
+        sec
+        sbc #24 // Default X offset
+        clc
+        adc spriteXoffset
+        lsr
+        lsr // LSR * 3: Divide by 8
+        lsr
+        tay // y now contains the current sprite col.
+
+        lda (ZP_ROW_LO),y
+        sta charCollision // charCollision will now contain the char code for the sprites row/col position.
+ 
+        jsr charReaction
+
+        pla
+        tay
+        pla
+        tax
+
+        rts
+
+    charReaction:
+        lda charCollision
+        cmp #CHAR_SPACE
+        bne isColliding
+            rts
+        isColliding:
+            inc SCREEN_BORDER_COLOR
             rts
 }

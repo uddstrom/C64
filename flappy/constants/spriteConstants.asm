@@ -4,6 +4,13 @@
 .label SPRITE_X                 = $d000           // sprite 0 x coord
 .label SPRITE_Y                 = $d001           // sprite 0 y coord
 
+.label SPRITE_TOP               = 2
+.label SPRITE_CENTER            = 10
+.label SPRITE_BOTTOM            = 19
+.label SPRITE_LEFT              = 2
+.label SPRITE_MIDDLE            = 11
+.label SPRITE_RIGHT             = 23
+
 .label SPRITE_ENABLE            = $d015           // Sprite enable register
 .label SPRITE_MULTICOLOR        = $d01c           // Sprite multicolor mode
 

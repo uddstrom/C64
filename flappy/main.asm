@@ -4,6 +4,7 @@
 #import "/system/memoryMap.asm"
 #import "/system/config.asm"
 #import "/includes/constants.asm"
+#import "/includes/macros.asm"
 
 BasicUpstart2(main)
 
