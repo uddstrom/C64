@@ -10,6 +10,8 @@ INPUT:
         beq joy2_IDLE           // beq = branch if equal, if equal goto label joy2_IDLE, otherwise proceed
                 jmp checkJoy2_UP    // if not idle, go here 
             joy2_IDLE:
+                // inc Sprite_Y_Pos,x
+                // SetSpriteAnimation(0,0,10) // animation 0 = flappy is idle
 
             checkJoy2_UP:
                 lda JOYSTICK_2  //   01111110
@@ -17,24 +19,23 @@ INPUT:
                                 // ----------
                                 //   00000000 => 0 if up is active
                 beq joy2_UP     // comparing JOYSTICK_2 && #UP with 0.
-                    lda #0
-                    sta animate
-                    jmp doneReadJoystick_2
+                    jmp checkJoy2_DOWN
+                    // SetSpriteAnimation(0,0,10)
+                    // jmp doneReadJoystick_2
                 joy2_UP:        // Holding joy2 in UP position
-                    lda #1
-                    sta animate
-                    dec Sprite_Y_Pos,x
+                    // dec Sprite_Y_Pos,x
+                    SetSpriteAnimation(0,1,2) // animation 1 = flying
                     jmp doneReadJoystick_2
 
+            checkJoy2_DOWN:
+                lda JOYSTICK_2
+                and #DOWN
+                beq joy2_DOWN
+                    jmp doneReadJoystick_2
+                joy2_DOWN:
+                    SetSpriteAnimation(0,0,5) // animation 0 = flappy is idle
+                    jmp doneReadJoystick_2
 
-            // checkJoy2_DOWN:
-            //     lda JOYSTICK_2
-            //     and #DOWN
-            //     beq joy2_DOWN
-            //         jmp checkJoy2_LEFT
-            //     joy2_DOWN:
-            //         inc Sprite_Y_Pos,x
-            //
             // checkJoy2_LEFT:
             //     lda JOYSTICK_2
             //     and #LEFT

@@ -2,7 +2,7 @@
 // -------------- GAME CODE --------------
 
 scrollX: .byte 0
-animate: .byte 0
+// animate: .byte 0
 
 
 main:
@@ -24,7 +24,7 @@ gameSetup:
     // --- init player (sprite 0) ---
     ldx #0 // sprite 0
 
-    lda #50
+    lda #100
     sta Sprite_X_Pos,x
     lda #150
     sta Sprite_Y_Pos,x
@@ -46,23 +46,8 @@ gameSetup:
 gameLoop:
     jsr delay
     jsr INPUT.readJoystick_2
-    jsr SPRITE.update
- 
-    // check collision upwards
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_LEFT, SPRITE_TOP)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_MIDDLE, SPRITE_TOP)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_TOP)
-
-    // check collision to the right
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_TOP)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_CENTER)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_BOTTOM)
-
-    // check collision downwards
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_LEFT, SPRITE_BOTTOM)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_MIDDLE, SPRITE_BOTTOM)
-    CheckCharCollision(SPRITE_X, SPRITE_Y, SPRITE_RIGHT, SPRITE_BOTTOM)
- 
+    jsr SPRITE.updateSprites
+    // CheckCollisions()
     jmp gameLoop
 
 delay:
