@@ -37,10 +37,20 @@
 .macro SetSpriteAnimation(spriteIdx, type, speed)
 {
     ldx #spriteIdx
+    lda Sprite_Anim_Type,x
+    cmp #type
+    beq doneSettingsSpriteAnimation
 
-    lda #type
-    sta Sprite_Anim_Type,x
+        lda #type
+        sta Sprite_Anim_Type,x
 
-    lda #speed
-    sta Sprite_Anim_Speed,x
+        lda #speed
+        sta Sprite_Anim_Speed,x
+
+        // reset the timer and the frame counter
+        lda #0
+        sta Sprite_Anim_Timer,x
+        sta Sprite_Anim_Frame_Counter,x
+
+    doneSettingsSpriteAnimation:
 }

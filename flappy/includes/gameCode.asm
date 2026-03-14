@@ -46,8 +46,7 @@ gameSetup:
 gameLoop:
     jsr delay
     jsr INPUT.readJoystick_2
-    jsr SPRITE.updateSprites
-    // CheckCollisions()
+    CheckCollisions()
     jmp gameLoop
 
 delay:

@@ -63,14 +63,14 @@ SPRITE:
                 doneCheckingAnimTimer:
 
             inx
-            cpx #8
+            cpx #8  // only animate sprite 0 for now
             beq doneAnimatingSprites
                 jmp animationLoop
 
             doneAnimatingSprites:
                 rts
 
-    drawSprites:
+    updateSprites:
         ldx #0
         updateSpritesPos:
             lda Sprite_X_Pos,x
@@ -92,33 +92,10 @@ SPRITE:
             tax
 
             inx
-            cpx #8
+            cpx #8  // only update sprite 0 for now
             bne updateSpritesPos
 
-        // lda animate
-        // cmp #1
-        // bne done
-
-        // animateSprite0:
-        //     ldx #0
-        //     lda sprite_anim_timer
-        //     clc
-        //     adc #20
-        //     sta sprite_anim_timer
-        //     lsr
-        //     lsr
-        //     lsr
-        //     lsr
-        //     lsr
-        //     lsr
-        //     clc
-        //     adc #SPRITE_POINTER_INDEX
-        //     // adc #0
-        //     sta SPRITE_POINTER_1,x
-        //     sta SPRITE_POINTER_2,x
-
-        done:
-            rts
+        rts
 
     checkCharCollision:
         txa

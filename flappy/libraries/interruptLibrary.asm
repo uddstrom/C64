@@ -55,10 +55,10 @@ INTERRUPT:
         ora #%00000001          // Acknowledge raster interrupt
         sta INTERRUPT_STATUS    // $d019
 
-        // jsr MAP.scrollRight
-        // jsr SPRITE.updateSprites // update the sprite position
+        jsr MAP.scrollRight
+        jsr SPRITE.updateSprites // update the sprite position
         jsr SPRITE.animateSprites // runs the animation
-        // jsr MUSIC_PLAY
+        jsr MUSIC_PLAY
 
         jmp INTERRUPT_RETURN    // $ea81, KERNAL interrupt return routine
 
