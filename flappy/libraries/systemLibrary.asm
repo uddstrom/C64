@@ -23,11 +23,11 @@ SYSTEM:
 		sta $d020 // SCREEN_BORDER_COLOR
 
         // Set screen background color
-		lda #BLUE
+		lda #BLACK
 		sta $d021 // SCREEN_BACKGROUND_COLOR
 
         // Set extra color 1
-		lda #BROWN
+		lda #BLUE
 		sta $d022 // SCREEN_EXTRA_COLOR_1
 
         // Set extra color 2
