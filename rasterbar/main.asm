@@ -1,14 +1,37 @@
 
-colorBar1: .byte 13,13,14,14,0
-colorBar2: .byte 14,14,13,13,0
+colorBar1: .byte 14,13,13,0
+colorBar2: .byte 13,13,14,0
+
+.const BAR_HEIGHT = 4
+.const INTRO_TEXT_ROW = 5
+.const INTRO_TEXT_COL = 14
+.const TOP_BAR_IRQ_LINE = 40 + INTRO_TEXT_ROW * 8
+.const BOTTOM_BAR_IRQ_LINE = 61 + INTRO_TEXT_ROW * 8
 
 BasicUpstart2(main)
 
 main:
     jsr $e544               // Clear screen
+
     jsr setupRasterInterrupt
+
+    ldx #INTRO_TEXT_ROW     // Load desired row (0-24)
+    ldy #INTRO_TEXT_COL     // Load desired column (0-39)
+    clc                     // Clear carry to set position
+    jsr $FFF0               // Sets the cursor position
+
+    lda #<intro
+    ldy #>intro
+    jsr $AB1E
+
     mLoop:
         jmp mLoop
+
+intro:
+    .byte $05 // PETSCII code for white
+    .text "HELLO WORLD!"
+    .byte 0
+
 
 setupRasterInterrupt:
 
@@ -25,7 +48,7 @@ setupRasterInterrupt:
     and #%01111111          // Clear bit 7 since we are not using raster interrupts past raster line 255
     sta $d011               // Screen control reg.
 
-    lda #150                // Trigger a raster interrupt at scan line 250
+    lda #TOP_BAR_IRQ_LINE
     sta $d012               // Current raster line
 
     lda #<irq               // Low byte of the address for our interrupt routine
@@ -47,17 +70,17 @@ irq:
     ora #%00000001          // Acknowledge raster interrupt
     sta $d019               // Interrupt status
 
-    lda #200                // Trigger a raster interrupt at scan line 250
+    lda #BOTTOM_BAR_IRQ_LINE                // Trigger a raster interrupt at scan line 300 (256 + 44)
     sta $d012               // Current raster line
 
-    lda #<irq2               // Low byte of the address for our interrupt routine
+    lda #<irq2              // Low byte of the address for our interrupt routine
     sta $0314               // Execution address (low bit) of interrupt service routine.
-    lda #>irq2               // High byte of the address for our interrupt routine
+    lda #>irq2              // High byte of the address for our interrupt routine
     sta $0315               // Execution address (hi bit) of interrupt service routine.
 
     ldx #0
 
-    topBar: 
+    topBar:
         lda colorBar1,x
 
         // Wait for the current raster line to finish painting,
@@ -71,7 +94,7 @@ irq:
 
         inx
 
-        cpx #5
+        cpx #BAR_HEIGHT
         bne topBar
 
     jmp $ea81               // $ea81, KERNAL interrupt return routine
@@ -83,8 +106,8 @@ irq2:
     lda $d019               // Interrupt status
     ora #%00000001          // Acknowledge raster interrupt
     sta $d019               // Interrupt status
-
-    lda #150                // Trigger a raster interrupt at scan line 250
+ 
+    lda #TOP_BAR_IRQ_LINE                // Trigger a raster interrupt at scan line 250
     sta $d012               // Current raster line
 
     lda #<irq               // Low byte of the address for our interrupt routine
@@ -106,7 +129,7 @@ irq2:
 
         inx
 
-        cpx #5
+        cpx #BAR_HEIGHT
         bne bottomBar
 
     jmp $ea31               // $ea81, KERNAL interrupt return routine
