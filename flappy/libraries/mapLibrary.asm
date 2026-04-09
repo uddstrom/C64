@@ -27,7 +27,10 @@ MAP:
             and #%00000111
             cmp #%00000000 // Scroll bits at 0 (scrolling at the full position)
             beq switchActiveScreen
-                dec SCREEN_CONTROL_2 //$d016 Scroll screen 1 pixel left
+                dec PIX
+                lda PIX
+                sta SCREEN_CONTROL_2
+                // dec SCREEN_CONTROL_2 //$d016 Scroll screen 1 pixel left
                 rts
 
 		switchActiveScreen:
@@ -36,6 +39,7 @@ MAP:
             lda SCREEN_CONTROL_2  // $d016
 			ora #%00000111
 			sta SCREEN_CONTROL_2 // $d016
+            sta PIX
 
 			// Switch where screen RAM is ($0400 or $0c00)
 			lda scrollX
@@ -206,14 +210,14 @@ MAP:
             lda MAP_ROW_21,y
             sta SCREEN_RAM_1_ROW_21,x
 
-            lda MAP_ROW_22,y
-            sta SCREEN_RAM_1_ROW_22,x
-
-            lda MAP_ROW_23,y
-            sta SCREEN_RAM_1_ROW_23,x
-
-            lda MAP_ROW_24,y
-            sta SCREEN_RAM_1_ROW_24,x
+            // lda MAP_ROW_22,y
+            // sta SCREEN_RAM_1_ROW_22,x
+            //
+            // lda MAP_ROW_23,y
+            // sta SCREEN_RAM_1_ROW_23,x
+            //
+            // lda MAP_ROW_24,y
+            // sta SCREEN_RAM_1_ROW_24,x
 
             inx
             iny
@@ -296,14 +300,14 @@ MAP:
             lda MAP_ROW_21,y
             sta SCREEN_RAM_2_ROW_21,x
 
-            lda MAP_ROW_22,y
-            sta SCREEN_RAM_2_ROW_22,x
-
-            lda MAP_ROW_23,y
-            sta SCREEN_RAM_2_ROW_23,x
-
-            lda MAP_ROW_24,y
-            sta SCREEN_RAM_2_ROW_24,x
+            // lda MAP_ROW_22,y
+            // sta SCREEN_RAM_2_ROW_22,x
+            //
+            // lda MAP_ROW_23,y
+            // sta SCREEN_RAM_2_ROW_23,x
+            //
+            // lda MAP_ROW_24,y
+            // sta SCREEN_RAM_2_ROW_24,x
 
             inx
             iny

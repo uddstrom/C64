@@ -2,6 +2,7 @@
 // -------------- GAME CODE --------------
 
 scrollX: .byte 0
+PIX: .byte $c7
 // animate: .byte 0
 
 

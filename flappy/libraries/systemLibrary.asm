@@ -17,6 +17,7 @@ SYSTEM:
         // Enable screen multicolor and set screen width to 38 cols
 		lda #%11010111
 		sta $d016 // SCREEN_CONTROL_2
+        sta PIX
 
         // Set screen border color
 		lda #BLACK
